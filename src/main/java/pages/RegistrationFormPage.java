@@ -27,9 +27,14 @@ public class RegistrationFormPage extends BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement registerButton;
 
-    public RegistrationFormPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(this.driver, this);
+//    public RegistrationFormPage(WebDriver driver) {
+//        super(driver);
+//        PageFactory.initElements(this.driver, this);
+//    }
+
+    //@Override
+    public boolean verify() {
+        return false;
     }
 
     public String randomTenDigitsNumber() {
@@ -37,14 +42,19 @@ public class RegistrationFormPage extends BasePage {
         return number;
     }
 
-    public RegistrationFormPage fillForm(Map<String, String> formFields) {
+    public RegistrationFormPage fillNameSurnamePass(Map<String, String> formFields) {
         nameInputField.sendKeys(formFields.get("name"));
         surnameInputField.sendKeys(formFields.get("surname"));
-        phoneInputField.sendKeys(randomTenDigitsNumber());
-        emailInputField.sendKeys(formFields.get("email"));
         passwordInputField.sendKeys(formFields.get("password"));
         return this;
     }
+
+    public RegistrationFormPage fillPhoneAndClickEmail(){
+        phoneInputField.sendKeys(randomTenDigitsNumber());
+        emailInputField.click();
+        return this;
+    }
+
 
     public void registerButtonClick() {
         registerButton.click();

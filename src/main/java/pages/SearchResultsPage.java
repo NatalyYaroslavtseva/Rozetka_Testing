@@ -29,10 +29,10 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "(//option)[3]")
     private WebElement sortByDescending;
 
-    public SearchResultsPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(this.driver, this);
-    }
+//    public SearchResultsPage(WebDriver driver) {
+//        super(driver);
+//        PageFactory.initElements(this.driver, this);
+//    }
 
     public void clickOnTheFirstProduct() {
         firstProduct.click();
@@ -53,6 +53,8 @@ public class SearchResultsPage extends BasePage {
     }
 
     public List<Integer> getPrices() {
+        waitForPageLoad();
+
         List<Integer> result = new ArrayList<>();
 
         for (WebElement element : productPrice) {

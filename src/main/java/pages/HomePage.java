@@ -19,9 +19,17 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//a[contains(@class,'register-link')]")
     private WebElement registerLink;
 
-    public HomePage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(this.driver, this);
+    @FindBy(xpath = "//ul[contains(@class,'menu-categories_')]")
+    private WebElement leftSideMenu;
+
+//    public HomePage(WebDriver driver) {
+//        //super(driver);
+//        PageFactory.initElements(this.driver, this);
+//    }
+
+    //@Override
+    public boolean verify() {
+        return leftSideMenu.isDisplayed();
     }
 
     public void openRozetkaWebsite() {

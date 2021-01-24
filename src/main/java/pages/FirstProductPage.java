@@ -1,6 +1,6 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+import driver.DriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -16,21 +16,20 @@ public class FirstProductPage extends BasePage{
     @FindBy(xpath = "//div[@class='cart-footer']")
     private WebElement cartFooter;
 
-    public FirstProductPage(WebDriver driver){
-        super(driver);
-        PageFactory.initElements(this.driver, this);
-    }
+//    public FirstProductPage() {
+//        PageFactory.initElements(DriverManager.getDriver(), this);
+//    }
 
     public String getNameOfProduct() {
         return productTitle.getText();
     }
 
-    public void clickOnBuyButton(){
+    public void clickOnBuyButton() {
         productTitle.click();
         buyButton.click();
     }
 
-    public boolean cartIsOpened(){
+    public boolean cartIsOpened() {
         return cartFooter.isDisplayed();
     }
 }
