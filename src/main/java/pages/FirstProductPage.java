@@ -1,11 +1,9 @@
 package pages;
 
-import driver.DriverManager;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
-public class FirstProductPage extends BasePage{
+public class FirstProductPage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='product__title']")
     private WebElement productTitle;
@@ -15,10 +13,6 @@ public class FirstProductPage extends BasePage{
 
     @FindBy(xpath = "//div[@class='cart-footer']")
     private WebElement cartFooter;
-
-//    public FirstProductPage() {
-//        PageFactory.initElements(DriverManager.getDriver(), this);
-//    }
 
     public String getNameOfProduct() {
         return productTitle.getText();

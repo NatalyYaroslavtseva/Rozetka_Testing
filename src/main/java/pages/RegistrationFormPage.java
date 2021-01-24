@@ -1,9 +1,7 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.Map;
 
@@ -27,11 +25,6 @@ public class RegistrationFormPage extends BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement registerButton;
 
-//    public RegistrationFormPage(WebDriver driver) {
-//        super(driver);
-//        PageFactory.initElements(this.driver, this);
-//    }
-
     //@Override
     public boolean verify() {
         return false;
@@ -49,12 +42,11 @@ public class RegistrationFormPage extends BasePage {
         return this;
     }
 
-    public RegistrationFormPage fillPhoneAndClickEmail(){
+    public RegistrationFormPage fillPhoneAndClickEmail() {
         phoneInputField.sendKeys(randomTenDigitsNumber());
         emailInputField.click();
         return this;
     }
-
 
     public void registerButtonClick() {
         registerButton.click();
