@@ -1,12 +1,14 @@
 package pages;
 
 import com.google.common.collect.Ordering;
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class SearchResultsPage extends BasePage {
 
     @FindBy(xpath = "(//span[@class='goods-tile__title'])[1]")
@@ -29,17 +31,20 @@ public class SearchResultsPage extends BasePage {
 
     public void clickOnTheFirstProduct() {
         firstProduct.click();
+        log.info("Clicked on the first product");
     }
 
     public void clickOnSortPriceByAscending() {
         sortByCheckBox.click();
         sortByAscending.click();
+        log.info("Sort price by 'Ascending' has been applied");
         waitForPageLoad();
     }
 
     public void clickOnSortPriceByDescending() {
         sortByCheckBox.click();
         sortByDescending.click();
+        log.info("Sort price by 'Descending' has been applied");
         waitForPageLoad();
     }
 
@@ -53,6 +58,7 @@ public class SearchResultsPage extends BasePage {
         for (WebElement element : productPrice) {
             result.add(Integer.parseInt((element.getText().replaceAll(" ", ""))));
         }
+        log.info("Products have the following prices: {}", result);
 
         return result;
     }

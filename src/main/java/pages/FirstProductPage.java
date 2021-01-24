@@ -1,8 +1,10 @@
 package pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Slf4j
 public class FirstProductPage extends BasePage {
 
     @FindBy(xpath = "//h1[@class='product__title']")
@@ -21,6 +23,7 @@ public class FirstProductPage extends BasePage {
     public void clickOnBuyButton() {
         productTitle.click();
         buyButton.click();
+        log.info("'Buy' button has been clicked");
     }
 
     public boolean cartIsOpened() {
