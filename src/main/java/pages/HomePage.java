@@ -37,5 +37,6 @@ public class HomePage extends BasePage {
     public void openTheRegistrationForm() {
         enterPersonalAccount.click();
         registerLink.click();
+        waitForPageLoad();
     }
 }
