@@ -8,8 +8,8 @@ Feature: As a user I want to put into a cart a product that I was looking for
     When The user click on the 'Buy' button
     Then The cart is opened
     Examples:
-      | search_input                    |
-      | 'Apple iPhone 12 Pro Max 256GB' |
+      | search_input                     |
+      | 'Apple iPhone 12 Pro Max 256 GB' |
 
   #1) Покупка
   #Відкрити сайт https://rozetka.com.ua/

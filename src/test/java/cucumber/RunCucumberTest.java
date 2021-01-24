@@ -1,4 +1,4 @@
-package Cucumber;
+package cucumber;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
@@ -8,8 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = "pretty",
         monochrome = true,
-        glue = "steps",
+        glue = "cucumber",
         features = "src/test/resources/features")
 
-public class CucumberTestRunner {
+public class RunCucumberTest {
 }

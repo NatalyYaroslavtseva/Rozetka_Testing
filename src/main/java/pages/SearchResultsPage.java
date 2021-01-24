@@ -1,10 +1,8 @@
 package pages;
 
 import com.google.common.collect.Ordering;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +27,6 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "(//option)[3]")
     private WebElement sortByDescending;
 
-    public SearchResultsPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(this.driver, this);
-    }
-
     public void clickOnTheFirstProduct() {
         firstProduct.click();
     }
@@ -41,11 +34,13 @@ public class SearchResultsPage extends BasePage {
     public void clickOnSortPriceByAscending() {
         sortByCheckBox.click();
         sortByAscending.click();
+        waitForPageLoad();
     }
 
     public void clickOnSortPriceByDescending() {
         sortByCheckBox.click();
         sortByDescending.click();
+        waitForPageLoad();
     }
 
     public boolean nothingFoundMessageIsShown() {

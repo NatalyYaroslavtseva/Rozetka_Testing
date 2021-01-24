@@ -6,13 +6,12 @@ Feature: As a user I want to register on the website
     And The user fill fields:
       | name     | <name>     |
       | surname  | <surname>  |
-      | phone    | <phone>    |
-      | email    | <email>    |
       | password | <password> |
+    And The user fill 'Phone' field and click on 'email' field
   #Then
     Examples:
-      | name | surname | phone | email | password |
-      | Ivan | Иванов  |       |       |          |
+      | name | surname | password |
+      | Иван | Иванов  | Ivan11   |
 
 
 
