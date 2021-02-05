@@ -2,6 +2,7 @@ package pages;
 
 import driver.DriverManager;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,6 +18,5 @@ public abstract class BasePage {
                 webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
     }
 
-    //TODO: investigate verify method
-    //public abstract boolean verify();
+    public abstract boolean verify();
 }

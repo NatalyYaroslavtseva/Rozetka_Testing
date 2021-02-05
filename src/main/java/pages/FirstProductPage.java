@@ -16,6 +16,14 @@ public class FirstProductPage extends BasePage {
     @FindBy(xpath = "//div[@class='cart-footer']")
     private WebElement cartFooter;
 
+    @FindBy(xpath = "//rz-product-top")
+    private WebElement productTop;
+
+    @Override
+    public boolean verify() {
+        return productTop.isDisplayed();
+    }
+
     public String getNameOfProduct() {
         return productTitle.getText();
     }

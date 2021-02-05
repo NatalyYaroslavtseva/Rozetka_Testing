@@ -27,9 +27,18 @@ public class RegistrationFormPage extends BasePage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement registerButton;
 
-    //@Override
+    @FindBy(xpath = "//p[@class='validation-message']")
+    private WebElement validationEmailMessage;
+
+    @FindBy(xpath = "//div[@class='modal__content']")
+    private WebElement registrationForm;
+
+    @FindBy(xpath = "//fieldset[contains(@class,'error')]")
+    WebElement errorHighlightedPasswordField;
+
+    @Override
     public boolean verify() {
-        return false;
+        return registrationForm.isDisplayed();
     }
 
     public String randomTenDigitsNumber() {
@@ -41,9 +50,8 @@ public class RegistrationFormPage extends BasePage {
     public RegistrationFormPage fillNameSurnamePass(Map<String, String> formFields) {
         nameInputField.sendKeys(formFields.get("name"));
         surnameInputField.sendKeys(formFields.get("surname"));
-        passwordInputField.sendKeys(formFields.get("password"));
-        log.info("Name '{}', surname '{}' and password '{}' fields has been entered",
-                formFields.get("name"), formFields.get("surname"), formFields.get("password"));
+        log.info("Name '{}' and surname '{}' fields has been entered",
+                formFields.get("name"), formFields.get("surname"));
         return this;
     }
 
@@ -55,8 +63,24 @@ public class RegistrationFormPage extends BasePage {
         return this;
     }
 
-    public void registerButtonClick() {
+    public void clickOnRegisterButton() {
         registerButton.click();
         log.info("Register button has been clicked");
+    }
+
+    public boolean isValidationMessageDisplayed(){
+        return validationEmailMessage.isDisplayed();
+    }
+
+    public String getTextValidationEmailMessage(){
+        return validationEmailMessage.getText();
+    }
+
+    public void clickPasswordField(){
+        passwordInputField.click();
+    }
+
+    public boolean isPasswordFieldErrorHighlighted(){
+        return errorHighlightedPasswordField.isDisplayed();
     }
 }

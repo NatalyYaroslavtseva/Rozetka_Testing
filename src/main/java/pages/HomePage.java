@@ -22,7 +22,7 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//ul[contains(@class,'menu-categories_')]")
     private WebElement leftSideMenu;
 
-    //@Override
+    @Override
     public boolean verify() {
         return leftSideMenu.isDisplayed();
     }

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class SearchResultsPage extends BasePage {
@@ -14,13 +15,13 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "(//span[@class='goods-tile__title'])[1]")
     private WebElement firstProduct;
 
-    @FindBy(xpath = "//div[@class='search-nothing__wrap']")
+    @FindBy(xpath = "//div[@class='catalog-empty']")
     private WebElement nothingFoundMessage;
 
     @FindBy(xpath = "//div[@class='goods-tile']//span[@class='goods-tile__price-value']")
     private List<WebElement> productPrice;
 
-    @FindBy(xpath = "//select[@_ngcontent-c22]")
+    @FindBy(xpath = "//select[contains(@class,'select')]")
     private WebElement sortByCheckBox;
 
     @FindBy(xpath = "(//option)[2]")
@@ -29,9 +30,17 @@ public class SearchResultsPage extends BasePage {
     @FindBy(xpath = "(//option)[3]")
     private WebElement sortByDescending;
 
+    @Override
+    public boolean verify() {
+        return firstProduct.isDisplayed();
+    }
+
     public void clickOnTheFirstProduct() {
-        firstProduct.click();
-        log.info("Clicked on the first product");
+        if (verify()) {
+            firstProduct.click();
+            log.info("Clicked on the first product");
+        } else
+            log.error("Search Result Page was not invoked");
     }
 
     public void clickOnSortPriceByAscending() {
@@ -53,14 +62,19 @@ public class SearchResultsPage extends BasePage {
     }
 
     public List<Integer> getPrices() {
-        List<Integer> result = new ArrayList<>();
+//        List<Integer> result = new ArrayList<>();
 
-        for (WebElement element : productPrice) {
-            result.add(Integer.parseInt((element.getText().replaceAll(" ", ""))));
-        }
-        log.info("Products have the following prices: {}", result);
+//        for (WebElement element : productPrice) {
+//            result.add(Integer.parseInt((element.getText().replaceAll(" ", ""))));
+//        }
+//        return result;
 
-        return result;
+
+        return productPrice.stream()
+                .map(productPriceElement -> Integer.parseInt((productPriceElement.getText().replaceAll(" ", ""))))
+                .collect(Collectors.toList());
+        //log.info("Products have the following prices: {}", result);
+
     }
 
     public boolean isPricesSortedByAscending() {
