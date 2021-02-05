@@ -69,12 +69,11 @@ public class SearchResultsPage extends BasePage {
 //        }
 //        return result;
 
-
-        return productPrice.stream()
+        List<Integer> prodPriceInt = productPrice.stream()
                 .map(productPriceElement -> Integer.parseInt((productPriceElement.getText().replaceAll(" ", ""))))
                 .collect(Collectors.toList());
-        //log.info("Products have the following prices: {}", result);
-
+        log.info("Products have the following prices: {}", prodPriceInt);
+        return prodPriceInt;
     }
 
     public boolean isPricesSortedByAscending() {
