@@ -3,6 +3,7 @@ package driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -29,7 +30,9 @@ public class DriverManager {
                 }
                 default: {
                     WebDriverManager.chromedriver().setup();
-                    driverThreadLocal.set(new ChromeDriver());
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("--headless", "--window-size=1920,1200");
+                    driverThreadLocal.set(new ChromeDriver(options));
                 }
             }
             driverThreadLocal.get().manage().window().maximize();
